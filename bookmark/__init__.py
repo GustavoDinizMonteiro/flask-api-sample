@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from flask_jwt import JWT
 from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_compress import Compress
@@ -24,12 +23,10 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 db = SQLAlchemy(app)
 
-from .auth import authenticate, identity
-JWT(app, authenticate, identity)
-
 # Blueprints
-from bookmark.views import books_resource, users_resource
+from bookmark.views import jwt, books_resource, auth_resource
+jwt.init_app(app)
+app.register_blueprint(auth_resource, url_prefix='/auth')
 app.register_blueprint(books_resource, url_prefix='/books')
-app.register_blueprint(users_resource, url_prefix='/auth')
 
 db.create_all()

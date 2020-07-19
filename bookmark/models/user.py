@@ -13,4 +13,4 @@ class User(db.Model):
         self.password = password
 
     def __repr__(self):
-        return '<Password %d>' % self.id
+        return '<User %d>' % self.id

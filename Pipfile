@@ -14,8 +14,8 @@ flask-compress = "*"
 flask-cors = "*"
 psycopg2 = "*"
 dataclasses = "*"
-flask-jwt = "*"
-passlib = "*"
+flask-jwt-extended = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.6"
